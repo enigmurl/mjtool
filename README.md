@@ -7,7 +7,6 @@ The following steps pertain to the general config, available on the left hand of
 - Fill in the API fields with appropriate values. For the url, ensure that there is no trailing "/" 
 - Select an export folder
 - Select a teacher, and then periods you want to view. You can select multiple
-Done!
 
 # Per Lab Configuration
 Simply use one of the three designated viewing templates to query submissions. 
