@@ -52,6 +52,7 @@ export default function RecentSubmissions(props: {state: landing_state, setError
             ...props.state,
 
             grouping: "Plain",
+            search: "",
     
             date_start: daysBeforeNow(lastXDays),
             sid: null,
@@ -87,6 +88,7 @@ export function StudentSubmissions(props: {state: landing_state, setError: (erro
             ...props.state,
 
             grouping: "Plain",
+            search: "",
     
             date_start: daysBeforeNow(lastXDays),
             sid: sid,

@@ -16,9 +16,14 @@ select option:checked {
   background-color: var(--accent2);
 }
 
+.search-button {
+    margin-left: -2px !important;
+}
+
 .scroll {
     overflow-y: scroll;
 }
+
 
 
 .table-guard span {

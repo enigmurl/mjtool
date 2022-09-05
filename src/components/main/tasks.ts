@@ -42,6 +42,33 @@ function validSubmissionFor(submission_meta : submission_meta, state : main_stat
             return true;
         }
     }
+
+    return false;
+}
+
+function secondaryValidSubmissionFor(submission : submission, search : string) : boolean {
+    if (!search) {
+        return true;
+    }
+
+    const terms = search.toLowerCase().split(" ")
+    const student = submission.student.ref
+    const roster = submission.student.roster.ref
+    const assignment = submission.student.roster.assignment.ref
+
+    const matchAgainst = submission.file_names
+        .concat(submission.ref.comment, [student.first, student.last], [roster.teacher], [assignment.name])
+        .map(x => x.toLowerCase())
+    
+    
+    for (const term of terms) {
+        for (const pair of matchAgainst) {
+            if (pair.includes(term)) {
+                return true;
+            }
+        }
+    }
+
     return false;
 }
 
@@ -118,7 +145,7 @@ export async function quickCopy(subs: submission_meta[], state: main_state) {
         url : state.api_url
     }
     try {
-        const assignments = await categorize(subs, credentials, state.assignments, state.teacher, state.period)
+        const assignments = await categorize(subs, credentials, state.assignments, state.teacher, state.period, state.search)
         await copy(credentials, assignments, state.due_date)
         await displayMessage("Status", "info", "Copy success")
     } catch (err : any) {
@@ -145,7 +172,8 @@ function mappedRoster(meta : roster_meta, assignment : assignment) : roster {
     return ret;
 }
     
-export async function categorize(meta : submission_meta[], credentials: api_credentials, assignments : assignment_meta[], teacher: string, periods: number[]) : Promise<assignment[]> {
+
+export async function categorize(meta : submission_meta[], credentials: api_credentials, assignments : assignment_meta[], teacher: string, periods: number[], search: string) : Promise<assignment[]> {
     // get a master list for back and forth
 
     const assignmentSkeleton : {[path: string] : assignment} = {}
@@ -178,7 +206,6 @@ export async function categorize(meta : submission_meta[], credentials: api_cred
 
         assignmentSkeleton[assignment.path] = mapped
     }
-    const promises : Promise<string[]>[] = []
 
     for (const sub of meta) {
         const lesson = sub.lesson;
@@ -189,12 +216,15 @@ export async function categorize(meta : submission_meta[], credentials: api_cred
         const student = assignmentSkeleton[lesson].map[roster].map[studentID]
 
 
-        const submission : submission = {ref: sub, student: student, file_names: []}
-        promises.push(queryFilenames(credentials, sub, student).then(fileNames => submission.file_names = fileNames))
-
-        student.submissions.push(submission)
+        const fileNames = await queryFilenames(credentials, sub, student);
+        const submission : submission = {ref: sub, student: student, file_names: fileNames}
+        if (secondaryValidSubmissionFor(submission, search)) {
+            student.submissions.push(submission)
+        }
     }
-    await Promise.all(promises)
+
+    // last round of filtering
+
 
     return Object.values(assignmentSkeleton)
 }

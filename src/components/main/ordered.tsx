@@ -104,13 +104,16 @@ export default function StandardViewport(props: {subs: submission_meta[], state:
     }
     return (
         <div className="scroll">
-            {props.subs.length === 0 && 
-                <p className="error">
-                    No submissions found matching criteria
-                </p>
-            }
-            <Guard async={categorize(props.subs, credentials, props.state.assignments, props.state.teacher, props.state.period)} fallback={<LoadingSmall/>}>
-                {assignments => assignments.map(assignment => <Assignment key={assignment.ref.name} assignment={assignment} state={props.state}/>)
+            <Guard async={categorize(props.subs, credentials, props.state.assignments, props.state.teacher, props.state.period, props.state.search)} fallback={<LoadingSmall/>} nocache>
+                {assignments => 
+                <>
+                {assignments.length === 0 && 
+                    <p className="error">
+                        No submissions found matching criteria
+                    </p>
+                }
+                {assignments.map(assignment => <Assignment key={assignment.ref.name} assignment={assignment} state={props.state}/>)}
+                </>
                 }
             </Guard>
         </div>

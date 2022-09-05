@@ -11,12 +11,16 @@ interface propsGuard<T> {
     children: (info: T) => ReactNode, 
     fallback: ReactNode
     error?: (error: string) => void
+    nocache?: boolean
 }
 
 
 export function Guard<T>(props: propsGuard<T>) {
     const [active, setActive] = useState(props.fallback);
     useEffect(() => {
+        if (props.nocache) {
+            setActive(props.fallback)
+        }
         props.async.then(value => {
             setActive(props.children(value))
         }).catch(err => {

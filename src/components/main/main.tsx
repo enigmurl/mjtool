@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useDebugValue, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { landing_state } from "../landing/state_provider";
 import { api_credentials, assignment_meta, queryAssignments, submission_meta } from "../../util/proxy";
@@ -16,6 +16,7 @@ type setStateType = (delta : Partial<main_state>) => void
 export interface main_state {
     grouping: "Ordered" | "Plain"
 
+    search: string,
     sid: number | null
     date_start?: Date,
     date_end?: Date,
@@ -53,15 +54,17 @@ function Actions(props: {state: main_state, subs: Promise<submission_meta[] | st
                 }
 
                 // go in order, so that latest results override first
-                for (const submission of flatten(await categorize(subs, credentials, props.state.assignments, props.state.teacher, props.state.period)).reverse()) {
-                    await downloadSubmission(submission, props.state, !hasOpened)
-                    if (!hasOpened) {
-                        hasOpened = true;
+                for (const submission of flatten(await categorize(subs, credentials, props.state.assignments, props.state.teacher, props.state.period, props.state.search)).reverse()) {
+                    if (submission.ref.version === submission.student.submissions.length) {
+                        await downloadSubmission(submission, props.state, !hasOpened)
+                        if (!hasOpened) {
+                            hasOpened = true;
+                        }
                     }
                 }
                 displayMessage("Success","info", "All files have been downloaded")
             }}>
-                Download All
+                Download Latest
             </button>
 
             {props.state.grouping === "Ordered" && 
@@ -95,14 +98,50 @@ function Grouping(props: {grouping: string, setState : setStateType}) {
     )
 }
 
-function SID(props: {sid: number, setState : setStateType}) {
+function Search(props: {search: string, setState : setStateType}) {
+    const [buffer, setBuffer] = useState(props.search)
+    function submit(event : FormEvent) {
+        event.preventDefault()
+        props.setState({search: buffer, grouping: "Plain"})
+    }
+
+    return (
+        <div className="col">
+            <label>Search Filter</label>
+            <form className="row" onSubmit={submit}>
+                <input placeholder="comments, files, names, etc" value={buffer || ""} onChange={event => {
+                    setBuffer(event.target.value)
+                }}/>
+                <button className="capsule primary-button search-button">
+                    Go
+                </button>
+            </form>
+           
+        </div>
+    )
+}
+
+function SID(props: {sid: number | null, setState : setStateType}) {
+    const [buffer, setBuffer] = useState(props.sid)
+
+    function submit(event : FormEvent) {
+        event.preventDefault()
+        props.setState({sid: buffer, grouping: "Plain"})
+    }
+
     return (
         <div className="col">
             <label>User Filter</label>
-            <input placeholder="student id" value={props.sid || ""} onChange={event => {
-                const str = event.target.value.replace(/\D/g,'')
-                props.setState({sid: str ? parseInt(str) : null})
-            }}/>
+            <form className="row" onSubmit={submit}>
+                <input placeholder="student id" value={buffer || ""} onChange={event => {
+                    const str = event.target.value.replace(/\D/g,'')
+                    setBuffer(str ? parseInt(str) : null)
+                }}/>
+                <button className="capsule primary-button search-button">
+                    Go
+                </button>
+            </form>
+           
         </div>
     )
 }
@@ -159,6 +198,7 @@ function Toolbar(props: {state : main_state, setState : setStateType, subs: Prom
         <div className="row toolbar">
             <Actions state={props.state} subs={props.subs}/>
             <Grouping grouping={props.state.grouping} setState={props.setState}/>
+            <Search search={props.state.search} setState={props.setState}/>
             <SID sid={props.state.sid} setState={props.setState}/>
             <DateRange start={props.state.date_start} end={props.state.date_end} setState={props.setState}/>
             <Guard async={queryAssignments({key: props.state.api_password, url: props.state.api_url})} fallback={<LoadingSmall/>}>

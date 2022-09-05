@@ -66,6 +66,7 @@ function getState(state: landing_state, active: assignment_meta, due : Date) : m
         ...state,
 
         grouping: "Ordered",
+        search: "",
 
         sid: null,
         assignments: [active],
