@@ -13,6 +13,17 @@ Plain view shows submissions by their date submitted, reversed. It's useful for 
 # Ordered
 Ordered view is nice for grouping submissions by class period and the assignment it was meant for. An image has not been provided as it would likely violate the students' privacy. 
 
+# Installation
+- See bottom of page for building and running source code
+- Latest releases also availble on right hand side under "Releases column"
+
+Download Links
+- mac: https://github.com/enigmurl/mjtool/releases/download/v1.0.0/mjtool.mac.zip
+- windows: https://github.com/enigmurl/mjtool/releases/download/v1.0.0/mjtool.windows.zip
+
+For mac, unzip the download and simply open the "mjtool.app" file
+For windows, unzip the download and navigate to the "mjtool.exe" file and run it. This is likely under the "mjtool-win32-x64" folder.
+
 # Initial Configuration
 The following steps pertain to the general config, available on the left hand of the screen.
 - Fill in the API fields with appropriate values. For the url, ensure that there is no trailing "/" 
