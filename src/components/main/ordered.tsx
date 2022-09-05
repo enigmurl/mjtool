@@ -80,7 +80,15 @@ function Roster(props: {roster: roster, state : main_state}) {
                 <label>Name</label>
                 <label>Auto Comments</label>
             </div>
-            {Object.entries(props.roster.map).sort().map(s => <Student key={s[0]} student={s[1]} state={props.state}/>)}
+            {Object.entries(props.roster.map).sort((a,b) => {
+                const ret = a[1].ref.last.localeCompare(b[1].ref.last)
+                if (ret) {
+                    return ret;
+                }
+                return a[1].ref.first.localeCompare(b[1].ref.first)
+            }
+
+            ).map(s => <Student key={s[0]} student={s[1]} state={props.state}/>)}
         </div>
     )
 }
