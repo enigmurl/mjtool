@@ -1,6 +1,6 @@
 A react/typescript/electron desktop application created for viewing and downloading submissions to the Cupertino High School APCS website.
 
-This repository is not actively maintained, and only shows the commits that I (Manu) made myself. For an updated version, please visit the repo owned by Mr. McLeod and Mr.Ferrante (you may need to contact them to obtain access).
+This repository is not actively maintained, and only shows the commits that I (Manu) made myself. For an updated version, please visit the repo owned by Mr. McLeod and Mr. Ferrante (you may need to contact them to obtain access).
 
 # Initial Configuration
 The following steps pertain to the general config, available on the left hand of the screen.
