@@ -1,5 +1,5 @@
 // generates error message for a submission
-
+import { humanReadableDate } from "../../util/date";
 import { api_credentials, downloadURL } from "../../util/proxy";
 import { student, submission } from "./tasks";
 
@@ -70,15 +70,15 @@ export default async function spreadsheetLine(credentials : api_credentials, stu
     const daysAfter = oldest ? daysLate(oldest, dueDate) : 0
 
     const array : string[] = [
-        oldest?.ref.timestamp.toISOString() || "",
-        newest?.ref.timestamp.toISOString() || "",
+        humanReadableDate(oldest?.ref.timestamp),
+        humanReadableDate(newest?.ref.timestamp),
         ref.first,
         ref.last,
         "" + ref.period,
         ref.email,
         "" + ref.id,
-        "\"" + (oldest?.ref.comment || "") + "\"",
-        "\"" + (newest?.ref.comment || "") + "\"",
+        "\"" + (oldest?.ref.comment || "").replace(/"/g, "\"\"") + "\"",
+        "\"" + (newest?.ref.comment || "").replace(/"/g, "\"\"") + "\"",
         "\"" + newestFilenames.map(x => downloadURL(credentials, oldest, x)).join('\n') + "\"",
         "\"" + oldestFilenames.map(x => downloadURL(credentials, newest, x)).join('\n') + "\"",
         oldest != null ? 'sub' : 'missing',

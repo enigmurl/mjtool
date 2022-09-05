@@ -59,6 +59,7 @@ function Actions(props: {state: main_state, subs: Promise<submission_meta[] | st
                         hasOpened = true;
                     }
                 }
+                displayMessage("Success","info", "All files have been downloaded")
             }}>
                 Download All
             </button>

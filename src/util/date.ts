@@ -27,3 +27,11 @@ export function dateFromAPIServer(server : string) {
     }
     return server
 }
+
+export function humanReadableDate(date : Date | null) : string {
+    if (!date) {
+        return ""
+    }
+    const str = date.toISOString().slice(0, 19).replace("T", " ");
+    return "\"" + str + "\""
+}
