@@ -1,0 +1,71 @@
+h1 {
+    font-family: var(--bold);
+    font-weight: 100;
+    color: #EEE;
+    text-align: center;
+}
+h2 {
+    font-family: var(--bold);
+    font-size: 14px;
+    color: #FFF;
+    text-align: center;
+}
+
+label {
+    font-family: var(--bold);
+    color: #CCC;
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+.period-selector {
+    margin: -3px;
+}
+.checkbox-label {
+    margin-bottom: 2px;
+    font-family: var(--light);
+    font-size: 14px;
+    color: #FFF;
+    min-width: 150px;
+    text-align: start;
+}
+.folder-label {
+    font-family: var(--light);
+    font-size: 14px;
+    color: #FFF;
+    min-width: 150px;
+    text-align: start;
+}
+input {
+    background-color: #CCC;
+    border: solid 2px var(--accent3);
+    border-radius: 5px;
+    margin: 2px 5px;
+    font-family: var(--light);
+    font-size: 13px;
+    padding: 4px 8px;
+    min-width: 50px;
+}
+
+.dropdown {
+    border-radius: 5px;
+    padding: 4px 8px;
+    margin: 2px 5px;
+    font-family: var(--light);
+    border: solid 2px var(--accent3);
+    background-color: #CCC;
+}
+
+.config {
+    flex-grow: 1;
+    width: 100px;
+    border: solid 1px white;
+    margin: 10px;
+}
+
+.error {
+    font-family: var(--light);
+    text-align: center;
+    color: #F77;
+}
