@@ -15,7 +15,7 @@ Ordered view is nice for grouping submissions by class period and the assignment
 
 # Installation
 - See bottom of page for building and running source code
-- Latest releases also availble on right hand side under "Releases column"
+- Latest releases also available on right hand side under "Releases column"
 
 Download Links
 - mac: https://github.com/enigmurl/mjtool/releases/download/v1.0.0/mjtool.mac.zip
