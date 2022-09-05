@@ -7,7 +7,10 @@ export function getHTMLDatePickerString(date: Date) : string {
 }
 
 export function getLocalDateFromHTMLDatePicker(date: string) : Date {
-    return new Date(new Date(date).getTime() + new Date().getTimezoneOffset());
+    const raw = new Date(date)
+    const offset = raw.getTimezoneOffset() * 60 * 1000
+    console.log("Return", new Date(new Date(date).getTime() + offset))
+    return new Date(raw.getTime() + offset);
 }
 
 export function getEndOfLocalDay(date: Date) {
@@ -32,6 +35,9 @@ export function humanReadableDate(date : Date | null) : string {
     if (!date) {
         return ""
     }
-    const str = date.toISOString().slice(0, 19).replace("T", " ");
+    const tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+    const localISOTime = (new Date(date.getTime() - tzoffset)).toISOString();
+
+    const str = localISOTime.slice(0, 19).replace("T", " ");
     return "\"" + str + "\""
 }

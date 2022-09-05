@@ -59,8 +59,8 @@ export function spreadsheetHeader() : string {
 }
 
 export default async function spreadsheetLine(credentials : api_credentials, student : student, dueDate : Date) : Promise<string> {
-    const oldest : submission | null = student.submissions.length > 0 ? student.submissions[0] : null
-    const newest : submission | null = student.submissions.length > 0 ? student.submissions[student.submissions.length - 1] : null
+    const oldest : submission | null = student.submissions.length > 0 ? student.submissions[student.submissions.length - 1] : null
+    const newest : submission | null = student.submissions.length > 0 ? student.submissions[0] : null
 
     const oldestFilenames = oldest ? oldest.file_names : []
     const newestFilenames = newest ? newest.file_names : []

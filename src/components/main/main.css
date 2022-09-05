@@ -97,6 +97,10 @@ select option:checked {
     text-align: left !important;
 }
 
+.user {
+    justify-content: flex-start !important;
+    margin-left: 5px;
+}
 .user-img {
     width: 30px;
     height: 30px;

@@ -178,6 +178,7 @@ export async function categorize(meta : submission_meta[], credentials: api_cred
 
         assignmentSkeleton[assignment.path] = mapped
     }
+    const promises : Promise<string[]>[] = []
 
     for (const sub of meta) {
         const lesson = sub.lesson;
@@ -187,13 +188,17 @@ export async function categorize(meta : submission_meta[], credentials: api_cred
 
         const student = assignmentSkeleton[lesson].map[roster].map[studentID]
 
-        const fileNames = await queryFilenames(credentials, sub, student)
 
-        student.submissions.push({ref: sub, student: student, file_names: fileNames})
+        const submission : submission = {ref: sub, student: student, file_names: []}
+        promises.push(queryFilenames(credentials, sub, student).then(fileNames => submission.file_names = fileNames))
+
+        student.submissions.push(submission)
     }
+    await Promise.all(promises)
 
     return Object.values(assignmentSkeleton)
 }
+
 
 export function flatten(raw : assignment[]) : submission[] {
     const subs : submission[] = []

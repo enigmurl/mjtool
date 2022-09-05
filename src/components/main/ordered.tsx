@@ -29,8 +29,8 @@ function Student(props: {student: student, state: main_state}) {
     const [showing, setShowing] = useState(false)
 
     const len = props.student.submissions.length
-    const oldest = len > 0 ? props.student.submissions[0] : null
-    const newest = len > 0 ? props.student.submissions[len - 1] : null
+    const oldest = len > 0 ? props.student.submissions[len - 1] : null
+    const newest = len > 0 ? props.student.submissions[0] : null
 
     return (
         <>

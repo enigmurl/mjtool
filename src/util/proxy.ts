@@ -149,7 +149,6 @@ export async function queryMetadataPreliminaryFilter(credentials: api_credential
                 lesson: x.lesson
             }})
 
-            console.log(json)
             ret = ret.concat(dateMapped)
         }
         
