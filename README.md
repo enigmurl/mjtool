@@ -1,4 +1,4 @@
-A react/typescript/electron desktop application created for viewing and downloading submissions to the Cupertino High School APCS website.
+A react/typescript/electron desktop application created for viewing and downloading submissions to the Cupertino High School APCS website (https://apcs.tinocs.com)
 
 This repository is not actively maintained, and only shows the commits that I (Manu) made myself. For an updated version, please visit the repo owned by Mr. McLeod and Mr. Ferrante (you may need to contact them to obtain access).
 
