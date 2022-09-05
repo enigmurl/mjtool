@@ -37,3 +37,16 @@ Simply use one of the three designated viewing templates to query submissions.
 
 # Potential Bugs
 - Error handling in some situations can be confusing. However, once initial configuration is done properly, this should not be a real problem.
+
+# Source Running
+- Download npm (https://nodejs.org/en/)
+- clone this repository `git clone https://github.com/enigmurl/mjtool.git`
+- using terminal, navigate to the root folder
+- install yarn `npm install --global yarn`
+- install mjtool dependencies `yarn upgrade`
+- run mjtool `yarn start`
+- Pull changes with `git pull && yarn upgrade`
+- If a yarn start doesn't work after pulling, try deleting the .webpack directory
+
+# Source Building
+- Follow Source Running steps, and also run `yarn make`
