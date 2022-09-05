@@ -5,7 +5,7 @@ This repository is not actively maintained, and only shows the commits that I (M
 # Initial Configuration
 The following steps pertain to the general config, available on the left hand of the screen.
 - Fill in the API fields with appropriate values. For the url, ensure that there is no trailing "/" 
-- Select an export
+- Select an export folder
 - Select a teacher, and then periods you want to view. You can select multiple
 Done!
 
