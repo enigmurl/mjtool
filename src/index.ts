@@ -31,8 +31,6 @@ const createWindow = (): void => {
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
-  
-
   ipcMain.handle("showFolderPicker", async (e : any) => {
     return dialog.showOpenDialogSync(mainWindow, {
       properties: ['openDirectory']

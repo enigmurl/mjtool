@@ -27,11 +27,11 @@
     "productName": "MJ Tool",
     "copyright": "Copyright © 2022 Manu Bhat",
     "mac": {
-      "icon": "./public/icons/mac/256x256.icns",
+      "icon": "./public/icons/icon.icns",
       "category": "public.app-category.productivity"
     },
     "win": {
-      "icon": "./public/icons/windows/256x256.png"
+      "icon": "./public/icons/icon.ico"
     },
     "files": [
       "./build/**/*",
@@ -47,7 +47,9 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "icon": "./public/icons/icon"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
