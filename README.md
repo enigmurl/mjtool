@@ -24,6 +24,8 @@ Download Links
 For mac, unzip the download and simply open the "mjtool.app" file
 For windows, unzip the download and navigate to the "mjtool.exe" file and run it. This is likely under the "mjtool-win32-x64" folder.
 
+**You may be warned that the app is unrecognized, run it anyways**
+
 # Initial Configuration
 The following steps pertain to the general config, available on the left hand of the screen.
 - Fill in the API fields with appropriate values. For the url, ensure that there is no trailing "/" 
