@@ -9,7 +9,6 @@ export function getHTMLDatePickerString(date: Date) : string {
 export function getLocalDateFromHTMLDatePicker(date: string) : Date {
     const raw = new Date(date)
     const offset = raw.getTimezoneOffset() * 60 * 1000
-    console.log("Return", new Date(new Date(date).getTime() + offset))
     return new Date(raw.getTime() + offset);
 }
 
