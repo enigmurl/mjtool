@@ -67,6 +67,7 @@ export default async function spreadsheetLine(credentials : api_credentials, stu
 
     const ref = student.ref
 
+    const daysAfter = oldest ? daysLate(oldest, dueDate) : 0
 
     const array : string[] = [
         oldest?.ref.timestamp.toISOString() || "",
@@ -81,7 +82,7 @@ export default async function spreadsheetLine(credentials : api_credentials, stu
         "\"" + newestFilenames.map(x => downloadURL(credentials, oldest, x)).join('\n') + "\"",
         "\"" + oldestFilenames.map(x => downloadURL(credentials, newest, x)).join('\n') + "\"",
         oldest != null ? 'sub' : 'missing',
-        "" + (daysLate(oldest, dueDate) || ""),
+        "" + (daysAfter > 0 ? daysAfter : ""),
         lint(student, oldest, newest, dueDate),
     ]
 

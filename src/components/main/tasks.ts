@@ -93,7 +93,7 @@ export async function downloadSubmission(submission: submission, state: landing_
 
     // open the folder
     if (open) {
-        shell.showItemInFolder(basePath)
+        shell.showItemInFolder(path.join(basePath, submission.file_names[0]))
     }
 }
 
