@@ -128,7 +128,13 @@ async function copy(credentials: api_credentials, assignments: assignment[], due
     const data : string[] = [spreadsheetHeader()]
     for (const assignment of assignments) {
         for (const roster of Object.values(assignment.map)) {
-            for (const student of Object.values(roster.map)) {
+            for (const student of Object.values(roster.map).sort((a,b) => {
+                const ret = a.ref.last.localeCompare(b.ref.last)
+                if (ret) {
+                    return ret;
+                }
+                return a.ref.first.localeCompare(b.ref.first)
+            })) {
                 const message = await spreadsheetLine(credentials, student, dueDate)
                 data.push(message)
             }

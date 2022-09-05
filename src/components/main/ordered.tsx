@@ -84,6 +84,7 @@ function Roster(props: {roster: roster, state : main_state}) {
                 const ret = a[1].ref.last.localeCompare(b[1].ref.last)
                 if (ret) {
                     return ret;
+                    
                 }
                 return a[1].ref.first.localeCompare(b[1].ref.first)
             }
