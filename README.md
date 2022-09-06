@@ -13,6 +13,19 @@ Plain view shows submissions by their date submitted, reversed. It's useful for 
 # Ordered
 Ordered view is nice for grouping submissions by class period and the assignment it was meant for. An image has not been provided as it would likely violate the students' privacy. 
 
+# Installation
+- See bottom of page for building and running source code
+- Latest releases also available on right hand side under "Releases column"
+
+Download Links
+- mac: https://github.com/enigmurl/mjtool/releases/download/v1.0.0/mjtool.mac.zip
+- windows: https://github.com/enigmurl/mjtool/releases/download/v1.0.0/mjtool.windows.zip
+
+For mac, unzip the download and simply open the "mjtool.app" file
+For windows, unzip the download and navigate to the "mjtool.exe" file and run it. This is likely under the "mjtool-win32-x64" folder.
+
+**You may be warned that the app is unrecognized, run it anyways**
+
 # Initial Configuration
 The following steps pertain to the general config, available on the left hand of the screen.
 - Fill in the API fields with appropriate values. For the url, ensure that there is no trailing "/" 
@@ -37,3 +50,16 @@ Simply use one of the three designated viewing templates to query submissions.
 
 # Potential Bugs
 - Error handling in some situations can be confusing. However, once initial configuration is done properly, this should not be a real problem.
+
+# Source Running
+- Download npm (https://nodejs.org/en/)
+- clone this repository `git clone https://github.com/enigmurl/mjtool.git`
+- using terminal, navigate to the root folder
+- install yarn `npm install --global yarn`
+- install mjtool dependencies `yarn upgrade`
+- run mjtool `yarn start`
+- Pull changes with `git pull && yarn upgrade`
+- If a yarn start doesn't work after pulling, try deleting the .webpack directory
+
+# Source Building
+- Follow Source Running steps, and also run `yarn make`
