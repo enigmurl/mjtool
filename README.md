@@ -4,11 +4,11 @@ This repository is not actively maintained, and only shows the commits that I (M
 
 # Landing
 The landing page allows you to set up the general configuration, as well as serve as the entry point to any of the quick filters (the three columns on the right). 
-![Landing](github/landing.png)
+![Landing](.github/landing.png)
 
 # Plain
 Plain view shows submissions by their date submitted, reversed. It's useful for seeing recent submissions of everyone, or of a particular student.
-![Plain](github/plain.png)
+![Plain](.github/plain.png)
 
 # Ordered
 Ordered view is nice for grouping submissions by class period and the assignment it was meant for. An image has not been provided as it would likely violate the students' privacy. 
