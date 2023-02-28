@@ -1,0 +1,126 @@
+#main-viewport {
+    display: flex;
+    flex-direction: column;
+    
+    max-height: 100vh;
+}
+
+.toolbar {
+    background-color: var(--accent0);
+    min-height: 130px;
+    margin: 0px !important;
+}
+
+/* for assignments */
+select option:checked {
+  background-color: var(--accent2);
+}
+
+.search-button {
+    margin-left: -2px !important;
+}
+
+.scroll {
+    overflow-y: scroll;
+}
+
+
+
+.table-guard span {
+    display: inline-block;
+    min-width: 20px;
+}
+
+.plain-submission {
+    display: grid;
+    grid-template-columns: 160px 160px 80px 160px 80px 80px 1fr 120px;
+    align-items: center;
+} 
+.ordered-student {
+    display: grid;
+    grid-template-columns: 80px 240px 1fr;
+    align-items: center;
+}
+.ordered-submission {
+    display: grid;
+    grid-template-columns: 160px 80px 80px 1fr 120px;
+    align-items: center;
+}
+.ordered-submission:not(:last-child), .ordered-submission:first-child {
+    border-bottom: solid 1px #CCC;
+}
+.ordered-submission-list {
+    padding-left: 40px;
+}
+.ordered-student:not(:last-child) .ordered-submission-list {
+    border-bottom: solid 1px var(--accent3);   
+}
+
+.plain-submission label, .ordered-student label, .ordered-submission label {
+    border: solid 1px;
+    border-top: solid 2px;
+    box-sizing: border-box;
+    padding: 5px 0px;
+    margin: 0px;
+    color: var(--accent3);
+}
+.plain-submission label:last-child, .ordered-student label:last-child, .ordered-submission label:last-child {
+    border-right: solid 2px;
+}
+.plain-submission label:first-child, .ordered-student label:first-child, .ordered-submission label:first-child {
+    border-left: solid 2px;
+}
+.ordered-submission label {
+    color: #CCC;
+}
+
+.plain-submission p, .ordered-student p, .ordered-submission p {
+    margin: 0px;
+    text-align: center;
+    color: #FFF;
+    font-family: var(--light);
+    font-size: 13px;
+}
+.ordered-student h3 {
+    border: solid 1px var(--accent3);
+    border-top: solid 2px var(--accent3);
+    border-left: solid 2px var(--accent3);
+    box-sizing: border-box;
+    padding: 5px 0px;
+    margin: 0px;
+    color: #CCC;
+    text-align: center;
+    font-size: 12px;
+    font-family: var(--bold);
+}
+
+.table-entry:not(:last-child) {
+    border-bottom: solid 1px var(--accent3);   
+}
+
+.submission-comments {
+    text-align: left !important;
+}
+
+.user {
+    justify-content: flex-start !important;
+    margin-left: 5px;
+}
+.user-img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    border-radius: 3px;
+}
+
+.working-true {
+    background-color: #7F7;
+    min-height: 20px;
+    border-radius: 5px;
+}
+
+.working-false {
+    background-color: #F77;
+    min-height: 20px;
+    border-radius: 5px;
+}
