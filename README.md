@@ -18,8 +18,8 @@ Ordered view is nice for grouping submissions by class period and the assignment
 - Latest releases also available on right hand side under "Releases column"
 
 Download Links
-- mac: https://github.com/enigmurl/mjtool/releases/download/v1.0.0/mjtool.mac.zip
-- windows: https://github.com/enigmurl/mjtool/releases/download/v1.0.0/mjtool.windows.zip
+- mac: https://github.com/enigmurl/mjtool/releases/download/1.0.0/mjtool.mac.zip
+- windows: https://github.com/enigmurl/mjtool/releases/download/1.0.0/mjtool.windows.zip
 
 For mac, unzip the download and simply open the "mjtool.app" file
 For windows, unzip the download and navigate to the "mjtool.exe" file and run it. This is likely under the "mjtool-win32-x64" folder.
