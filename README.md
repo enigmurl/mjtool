@@ -1,19 +1,21 @@
+# Manu - Jiaming Tool (MJ Tool)
+
 A react/typescript/electron desktop application created for viewing and downloading submissions to the Cupertino High School APCS website (https://apcs.tinocs.com).
 
 This repository is not actively maintained, and only shows the commits that I (Manu) made myself. For an updated version, please visit the repo owned by Mr. McLeod and Mr. Ferrante (you may need to contact them to obtain access).
 
-# Landing
-The landing page allows you to set up the general configuration, as well as serve as the entry point to any of the quick filters (the three columns on the right). 
+## Landing
+The landing page allows you to set up the general configuration, as well as serve as the entry point to any of the quick filters (the three columns on the right). (Note, this screenshot was taken before server profiles were added!)
 ![Landing](.github/landing.png)
 
-# Plain
+## Plain
 Plain view shows submissions by their date submitted, reversed. It's useful for seeing recent submissions of everyone, or of a particular student.
 ![Plain](.github/plain.png)
 
-# Ordered
+## Ordered
 Ordered view is nice for grouping submissions by class period and the assignment it was meant for. An image has not been provided as it would likely violate the students' privacy. 
 
-# Installation
+## Installation
 - See bottom of page for building and running source code
 - Latest releases also available on right hand side under "Releases column"
 
@@ -31,6 +33,7 @@ The following steps pertain to the general config, available on the left hand of
 - Fill in the API fields with appropriate values. For the url, ensure that there is no trailing "/" 
 - Select an export folder
 - Select a teacher, and then periods you want to view. You can select multiple
+- If you would like multiple server profiles to switch between APCS and Intro Java, just simply click "Add Server," and fill out details like before. All settings are saved and you can switch between the different profiles by using the dropdown. Theoretically, you can have multiple "server profiles" pointing to the same hostname, if you so desire.
 
 # Per Lab Configuration
 Simply use one of the three designated viewing templates to query submissions. 
