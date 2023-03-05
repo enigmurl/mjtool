@@ -11,9 +11,9 @@
   "main": ".webpack/main",
   "target": "node",
   "scripts": {
-    "start": "NODE_ENV=development && electron-forge start",
+    "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "NODE_ENV=production && electron-forge make",
+    "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx ."
   },
