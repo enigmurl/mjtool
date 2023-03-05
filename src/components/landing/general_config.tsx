@@ -1,12 +1,55 @@
 import React, { useEffect, useRef, useState } from "react";
-import { landing_state } from "./state_provider";
+import { landing_single_state, landing_state } from "./state_provider";
 import { Guard, LoadingSmall } from "../../util/async";
 import { api_credentials, queryTeachers } from "../../util/proxy";
 const { ipcRenderer } = window.require('electron')
 const path = window.require('path');
 
 
-type setStateType = (state: Partial<landing_state>) => void
+type setStateType = (state: {index: number} | Partial<landing_single_state>) => void
+
+function ServerIndex(props: { 
+        index: number, 
+        count: number, 
+        addServer: () => void,
+        deleteServer: () => void,
+        setState: setStateType
+    }) {
+
+    return (
+        <>
+            <label>Server</label>
+            {/* Selecting server index */}
+            <select className="dropdown" value={props.index} onChange={event => {
+                props.setState({index: +event.target.value})
+            }}>
+                {Array.from(new Array(props.count), (_, i) => i).map(x => <option key={x}>{x}</option>)}
+            </select>
+
+            <div className="row">
+                <button className="capsule primary-button" onClick={async (event) => {
+                    props.addServer()
+                }}>
+                    Add Server
+                </button>
+
+                {
+                    props.count > 1 &&
+                    <button className="capsule danger-button" onClick={async (event) => {
+                        if (confirm("You are deleting the current server profile!")) {
+                            props.deleteServer()
+                        } 
+                    }}>
+                        Delete Current
+                    </button>
+                }
+                
+            </div>
+           
+
+        </>
+    ) 
+}
 
 function APIConfig(props: { url : string, password: string, setState: setStateType }) {
     return (
@@ -120,6 +163,7 @@ export function RosterList(props: {teacher: string | null, periods: number[], cr
                         </select>
 
                         <label>Periods</label>
+
                         {
                             props.teacher ? 
                                 (teachers as any)[props.teacher].sort().map((period : number) => 
@@ -136,7 +180,8 @@ export function RosterList(props: {teacher: string | null, periods: number[], cr
                                 </p>
                             
                         }
-                        {   props.teacher && (teachers as any)[props.teacher].length === 0 &&
+                        {   
+                            props.teacher && (teachers as any)[props.teacher].length === 0 &&
                                 <p className="error">
                                     No periods found
                                 </p>
@@ -171,23 +216,44 @@ export function RosterList(props: {teacher: string | null, periods: number[], cr
 //     )
 // }
 
-export default function GeneralConfig(props: {state : landing_state, setState : setStateType, setError: (error: string) => void}) {
+export default function GeneralConfig(props: {
+        state : landing_state, 
+        setState : setStateType, 
+        addServer: () => void,
+        deleteServer: () => void,
+        setError: (error: string) => void
+    }) {
+
+    const current = props.state.servers[props.state.index]
+
     return (
         <>
             <h2>General Config</h2>
-            <APIConfig url={props.state.api_url} password={props.state.api_password} setState={props.setState}/>
+
+            <ServerIndex 
+                index={props.state.index} 
+                count={props.state.servers.length} 
+                setState={props.setState}
+                addServer={props.addServer}
+                deleteServer={props.deleteServer}
+                />
+            <br/>
+
+            <APIConfig url={current.api_url} password={current.api_password} setState={props.setState}/>
 
             <br/>   
 
-            <Export folder={props.state.export_root} setState={props.setState} />
+            <Export folder={current.export_root} setState={props.setState} />
 
             <br/>
 
-            <RosterList credentials={{
-                key: props.state.api_password,
-                url: props.state.api_url
-            }}  teacher={props.state.teacher}
-                periods={props.state.period}
+            <RosterList 
+                credentials={{
+                    key: current.api_password,
+                    url: current.api_url
+                }}  
+                teacher={current.teacher}
+                periods={current.period}
                 setState={props.setState}
                 setError={props.setError}
                 />

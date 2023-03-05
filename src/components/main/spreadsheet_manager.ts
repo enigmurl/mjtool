@@ -14,27 +14,31 @@ function daysLate(assignment: submission | null, target: Date) : number | null {
 }
 
 export function lint(student: student, oldest: submission | null, newest: submission | null, dueDate: Date) : string {
+    var ret = ""
+
     if (!oldest) {
-        return "MISSING: as of " + (new Date().toLocaleDateString())
+        return "MISSING: as of " + (new Date().toLocaleDateString()) + ". "
     } 
-    if (!newest.ref.is_working) {
-        return "RE NEEDED: latest submission was marked as incomplete by the submitter"
-    }
+
     if (oldest.ref.timestamp > dueDate) {
         const late = daysLate(oldest, dueDate)
         const lateString = late == 1 ? "1 day" : late + " days"
-        return "LATE: earliest submission was turned in " + lateString + " past the due date of " + dueDate.toLocaleDateString()
+        ret += "LATE: earliest submission was turned in " + lateString + " past the due date of " + dueDate.toLocaleDateString() + ". "
+    }
+
+    if (!newest.ref.is_working) {
+        ret += "RE NEEDED: latest submission was marked as incomplete by the submitter. "
     }
 
 
     const start = correctStart(student)
     for (const fileName of newest?.file_names || []) {
         if (!fileName.startsWith(start)) {
-            return "NAMING: file '" + fileName + "' does not start with '" + start + "'"
+            ret += "NAMING: file '" + fileName + "' does not start with '" + start + "'. "
         }
     }
 
-    return ""
+    return ret
 }
 
 export function spreadsheetHeader() : string {

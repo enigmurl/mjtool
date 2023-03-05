@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { main_state } from "../main/main";
 import { daysBeforeNow, getEndOfLocalDay } from "../../util/date";
 import { queryAssignments } from "../../util/proxy";
-import { landing_state } from "./state_provider"
+import { landing_single_state, landing_state } from "./state_provider"
 
 
 function LastDays(props: {lastXDays: number, setLastDays: (days: number) => void}) {
@@ -38,7 +38,7 @@ function Downloads() {
     )
 }
 
-export default function RecentSubmissions(props: {state: landing_state, setError: (error: string) => void}) {
+export default function RecentSubmissions(props: {state: landing_single_state, setError: (error: string) => void}) {
     const [lastXDays, setLastDays] = useState(7);
     const navigate = useNavigate();
 
@@ -73,7 +73,7 @@ export default function RecentSubmissions(props: {state: landing_state, setError
     )
 }
 
-export function StudentSubmissions(props: {state: landing_state, setError: (error: string) => void}) {
+export function StudentSubmissions(props: {state: landing_single_state, setError: (error: string) => void}) {
     const [lastXDays, setLastDays] = useState(365);
     const [sid, setSid] = useState<number | null>(5)
 

@@ -5,6 +5,7 @@
   --accent2: #aae1ff;
   --accent3: #6795aa;
   --accent3rgb: 103, 149, 170;
+  --danger: #FF7777;
 
 
   --light: 'Montserrat-light', sans-serif;
@@ -61,6 +62,10 @@ body {
 }
 .secondary-button {
   background-color: var(--accent2) !important;
+}
+
+.danger-button {
+  background-color: var(--danger) !important;
 }
 
 .row {

@@ -1,4 +1,4 @@
-import { landing_state } from "../landing/state_provider";
+import { landing_single_state, landing_state } from "../landing/state_provider";
 import { api_credentials, assignment_meta, downloadURL, queryFilenames, queryMetadataPreliminaryFilter, queryRoster, roster_meta, student_meta, submission_meta } from "../../util/proxy";
 import spreadsheetLine, { spreadsheetHeader } from "./spreadsheet_manager";
 import { main_state } from "./main";
@@ -100,7 +100,7 @@ async function downloadFile(credentials : api_credentials, submission: submissio
 }
 
 // for downloading all, just open first one?
-export async function downloadSubmission(submission: submission, state: landing_state, open? : boolean) {
+export async function downloadSubmission(submission: submission, state: landing_single_state, open? : boolean) {
     // only open if it's requested
     console.log("Downloading submission", submission.ref.lesson)
 

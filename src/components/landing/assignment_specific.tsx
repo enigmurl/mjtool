@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, LinkProps, NavigateOptions, useLocation, useNavigate } from "react-router-dom";
-import { landing_state } from "./state_provider";
+import { landing_single_state, landing_state } from "./state_provider";
 import { Guard, LoadingSmall } from "../../util/async";
 import { api_credentials, assignment_meta, queryAssignments } from "../../util/proxy";
 import { main_state } from "../main/main";
@@ -61,7 +61,7 @@ function DueDate(props: {date: Date , setState: (state: Date) => void}) {
     )
 }
 
-function getState(state: landing_state, active: assignment_meta, due : Date) : main_state {
+function getState(state: landing_single_state, active: assignment_meta, due : Date) : main_state {
     return {
         ...state,
 
@@ -74,7 +74,7 @@ function getState(state: landing_state, active: assignment_meta, due : Date) : m
     }
 }
 
-function Downloads(props: {state: landing_state, date: Date, active?: assignment_meta, setError: (error: string) => void}) {
+function Downloads(props: {state: landing_single_state, date: Date, active?: assignment_meta, setError: (error: string) => void}) {
     const navigate = useNavigate()
 
     return (
@@ -115,7 +115,7 @@ function Downloads(props: {state: landing_state, date: Date, active?: assignment
 }
 
 // needs all state for the api url
-export default function AssignmentSpecific(props: {state: landing_state, setError: (error: string) => void}) {
+export default function AssignmentSpecific(props: {state: landing_single_state, setError: (error: string) => void}) {
     const [date, setDate] = useState(getEndOfLocalDay(new Date()))
     const [active, setActive] = useState<assignment_meta | null>(null)
 

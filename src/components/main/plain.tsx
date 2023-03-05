@@ -1,5 +1,5 @@
 import React from "react";
-import { landing_state } from "../landing/state_provider";
+import { landing_single_state, landing_state } from "../landing/state_provider";
 import { Guard, LoadingSmall } from "../../util/async";
 import { api_credentials, submission_meta } from "../../util/proxy";
 import { main_state } from "./main";
@@ -21,7 +21,7 @@ function Header() {
     )
 }
 
-function Submission(props: {submission: submission, state: landing_state}) {
+function Submission(props: {submission: submission, state: landing_single_state}) {
     const meta = props.submission.ref
     const student = props.submission.student.ref
 

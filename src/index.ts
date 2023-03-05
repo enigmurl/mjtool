@@ -38,7 +38,7 @@ const createWindow = (): void => {
   });
  
   const folder =  path.join(app.getPath('appData'), 'mjtool')
-  const fileLoc = path.join(app.getPath('appData'), 'mjtool', 'config.json')
+  const fileLoc = path.join(app.getPath('appData'), 'mjtool', 'multi_config.json')
   ipcMain.handle("openApp", async (e: any) => {
     try {
       return JSON.parse(fs.readFileSync(fileLoc, {encoding: 'utf-8'}))
