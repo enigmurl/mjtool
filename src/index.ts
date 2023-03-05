@@ -1,4 +1,5 @@
-import path from "path";
+const path = require("path")
+const url = require("url")
 
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const fs = require('fs')
@@ -28,8 +29,15 @@ const createWindow = (): void => {
     },
   });
 
-  // and load the index.html of the app.
-  mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+  const startUrl = url.format(
+    {
+       pathname: path.join(__dirname, 'index.html'),
+       protocol: 'file:',
+       slashes: true
+    });
+  var env = app.isPackaged;
+  console.log("Environment package", env); 
+  mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY)
 
   ipcMain.handle("showFolderPicker", async (e : any) => {
     return dialog.showOpenDialogSync(mainWindow, {

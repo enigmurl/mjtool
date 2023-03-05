@@ -11,9 +11,9 @@
   "main": ".webpack/main",
   "target": "node",
   "scripts": {
-    "start": "electron-forge start",
+    "start": "NODE_ENV=development && electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make",
+    "make": "NODE_ENV=production && electron-forge make",
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx ."
   },
@@ -25,7 +25,7 @@
   "build": {
     "appId": "com.tinocs.mjtool",
     "productName": "MJ Tool",
-    "copyright": "Copyright © 2022 Manu Bhat",
+    "copyright": "Copyright © 2022-2023 Manu Bhat",
     "mac": {
       "icon": "./public/icons/icon.icns",
       "category": "public.app-category.productivity"
@@ -73,10 +73,13 @@
         }
       ],
       "plugins": [
-        {
-          "name": "@electron-forge/plugin-webpack",
-          "config": {
+        [
+          "@electron-forge/plugin-webpack",
+          {
             "mainConfig": "./webpack.main.config.js",
+            "devServer": {
+              "liveReload": false
+            },
             "devContentSecurityPolicy": "default-src 'none'; script-src 'unsafe-eval'; script-src-elem 'self'; img-src *; style-src 'self' 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com/s/; connect-src 'self' *;",
             "renderer": {
               "config": "./webpack.renderer.config.js",
@@ -89,16 +92,16 @@
               ]
             }
           }
-        }
+        ]
       ]
     }
   },
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.65",
-    "@electron-forge/maker-deb": "^6.0.0-beta.65",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.65",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.65",
-    "@electron-forge/maker-zip": "^6.0.0-beta.65",
+    "@electron-forge/cli": "6.0.0-beta.65",
+    "@electron-forge/maker-deb": "6.0.0-beta.65",
+    "@electron-forge/maker-rpm": "6.0.0-beta.65",
+    "@electron-forge/maker-squirrel": "6.0.0-beta.65",
+    "@electron-forge/maker-zip": "6.0.0-beta.65",
     "@electron-forge/plugin-webpack": "6.0.0-beta.65",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",

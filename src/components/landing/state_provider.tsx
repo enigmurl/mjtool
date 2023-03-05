@@ -1,7 +1,6 @@
 import { stat } from "fs";
 import React, { useMemo } from "react";
 import { Routes, Route } from "react-router";
-import { BrowserRouter } from "react-router-dom";
 import Landing from "./landing";
 import Main from "../main/main";
 import { Guard, LoadingLarge, LoadingSmall } from "../../util/async";
