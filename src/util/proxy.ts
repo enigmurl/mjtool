@@ -92,6 +92,10 @@ export async function queryRoster(credentials: api_credentials, teacher: string,
     }
 }
 
+export function safePath(path: string) {
+    return path.replace(/[\/<>:"\\|?*\s;]/g, "-")
+}
+
 export function downloadURL(credentials: api_credentials, submission: submission, fileName: string) : string {
     return url_for(credentials, '/submissions/' + submission.student.roster.assignment.ref.path + '/' + submission.student.ref.id + '/' + submission.ref.version + '/' + fileName)
 }
