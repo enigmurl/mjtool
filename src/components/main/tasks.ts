@@ -1,5 +1,5 @@
 import { landing_single_state, landing_state } from "../landing/state_provider";
-import { api_credentials, assignment_meta, downloadURL, queryFilenames, queryMetadataPreliminaryFilter, queryRoster, roster_meta, student_meta, submission_meta } from "../../util/proxy";
+import { api_credentials, assignment_meta, downloadURL, queryFilenames, queryMetadataPreliminaryFilter, queryRoster, roster_meta, safePath, student_meta, submission_meta } from "../../util/proxy";
 import spreadsheetLine, { spreadsheetHeader } from "./spreadsheet_manager";
 import { main_state } from "./main";
 
@@ -108,7 +108,8 @@ export async function downloadSubmission(submission: submission, state: landing_
     const period  = submission.student.ref.period
     const assignment = submission.student.roster.assignment.ref.name
 
-    const basePath = path.join(state.export_root, assignment, teacher + '-' + period)
+    
+    const basePath = path.join(state.export_root, safePath(assignment), teacher + '-' + period)
     const credentials : api_credentials = {
         key : state.api_password,
         url : state.api_url
