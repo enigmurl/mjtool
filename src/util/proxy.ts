@@ -93,7 +93,7 @@ export async function queryRoster(credentials: api_credentials, teacher: string,
 }
 
 export function safePath(path: string) {
-    return path.replace(/[\/<>:"\\|?*\s;]/g, "-")
+    return path.replace(/[\/<>:"\\|?*.;]/g, "-")
 }
 
 export function downloadURL(credentials: api_credentials, submission: submission, fileName: string) : string {
