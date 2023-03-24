@@ -1,3 +1,5 @@
+*** THIS REPOSITORY IS AN ARCHIVE AND NOT ACTIVELY MAINTAINED VISIT https://github.com/tedMcleod/mjtool/ FOR THE CHS UPDATED REPOSITORY ALONG WITH PROPER RELEASES ***
+
 # Manu - Jiaming Tool (MJ Tool)
 
 A react/typescript/electron desktop application created for viewing and downloading submissions to the Cupertino High School APCS website (https://apcs.tinocs.com).
